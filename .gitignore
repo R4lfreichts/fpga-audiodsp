@@ -1,0 +1,29 @@
+# Vivado generated files
+/.Xil/
+/.cache/
+/.hw/
+/.ip_user_files/
+/.sim/
+/.runs/
+/.gen/
+*.jou
+*.log
+*.str
+*.tmp
+*.backup
+*.wdb
+*.pb
+*.ltx
+
+# Vitis / SDK
+**/Debug/
+**/Release/
+**/.metadata/
+
+# Editor / OS
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+.vscode/
+.idea/
