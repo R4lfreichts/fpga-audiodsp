@@ -60,22 +60,31 @@ Die Entwicklung erfolgt schrittweise:
 
 ---
 
-# Projektstruktur
+## Projektstruktur
 
-fpga-audiodsp
+```
+fpga-audiodsp/
 │
-├── docs/ Dokumentation und Projektbericht
+├── docs/                Dokumentation und Projektbericht
+│
 ├── hw/
-│ ├── rtl/ VHDL/Verilog Quellcode
-│ ├── constraints/ Board Constraints (XDC)
-│ ├── tb/ Testbenches
-│ └── scripts/ Vivado TCL Skripte
+│   ├── rtl/
+│   │   ├── i2s/         I2S Sender / Empfänger
+│   │   ├── signal_gen/  Sinusgenerator
+│   │   ├── wav_player/  WAV Wiedergabe
+│   │   ├── bypass/      ADC → DAC Bypass
+│   │   └── effects/     DSP Effekte
+│   │
+│   ├── constraints/     Board Constraints (XDC)
+│   ├── tb/              Testbenches
+│   └── scripts/         Vivado TCL Skripte
 │
-├── sw/ Software für das Processing System
+├── sw/                  Software für das Processing System
 │
-├── audio/ Test-Audiodateien
+├── audio/               Test-Audiodateien
 │
-└── measurements/ Messergebnisse und Tests
+└── measurements/        Messergebnisse und Tests
+```
 
 ---
 
