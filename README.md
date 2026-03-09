@@ -1,9 +1,9 @@
 # Wichtig für GitHub:
 
-git status
-git add .
-git commit -m "Kurz und konkret beschreiben, was du geändert hast"
-git push
+- git status
+- git add .
+- git commit -m "Kurz und konkret beschreiben, was du geändert hast"
+- git push
 
 
 # FPGA Audio DSP
