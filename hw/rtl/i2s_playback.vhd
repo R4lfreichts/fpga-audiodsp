@@ -52,10 +52,19 @@ architecture rtl of i2s_playback is
     signal sample_index : integer range 0 to N_SAMPLES-1 := 0;
     signal ws_prev      : std_logic := '0';
 
+    -- Clock Wizard
+    component clk_wiz_0
+        port (
+            clk_in1  : in  std_logic;
+            clk_out1 : out std_logic;
+            reset    : in  std_logic
+        );
+    end component;
+
 begin
 
     -- PLL / Clock Wizard
-    i2s_clock : entity work.clk_wiz_0
+    i2s_clock : clk_wiz_0
         port map (
             clk_in1  => clock,
             clk_out1 => master_clk,
@@ -82,7 +91,7 @@ begin
             r_data_rx => r_data_rx
         );
 
-    -- nÃ¤chstes Sample pro Stereo-Frame
+    -- nächstes Sample pro Stereo-Frame
     process (master_clk)
         variable idx_next : integer range 0 to N_SAMPLES-1;
     begin
@@ -103,7 +112,7 @@ begin
         end if;
     end process;
 
-    -- gleiche Takte fÃ¼r ADC und DAC
+    -- gleiche Takte für ADC und DAC
     mclk <= (others => master_clk);
     sclk <= (others => serial_clk);
     ws   <= (others => word_select);
