@@ -1,7 +1,15 @@
 # Wichtig für GitHub:
 
 - git status
-- git add .
+- (git add .)
+- git add hw/rtl/i2s_playback.vhd
+- git add hw/rtl/i2s_transceiver.vhd
+- git add hw/constraints/cons.xdc
+- git add hw/scripts/create_project.tcl
+- git add hw/scripts/create_clk_wiz.tcl
+- git add .gitignore
+- git add README.
+- falls zu viel geadded (zum Beispiel mit . oder *): git restore --staged .
 - git commit -m "Kurz und konkret beschreiben, was du geändert hast"
 - git push
 
