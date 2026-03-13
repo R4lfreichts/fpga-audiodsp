@@ -12,6 +12,26 @@
 - falls zu viel geadded (zum Beispiel mit . oder *): git restore --staged .
 - git commit -m "Kurz und konkret beschreiben, was du geändert hast"
 - git push
+=> der Vorgang des pushens geht wesentlich leichter, wenn man den bitstream / die Daten an einem abgesonderten Ort abspeichert und dann die erzeugten Ordner im scripts-Verzeichnis löscht 
+
+# Vivado-Projekt starten
+Um das Vivado-Projekt aus dem GitHub-Repository zu erzeugen, müssen mit Hilfe 
+der Vivado-Tcl-Konsole folgende Schritte ausgeführt werden:
+
+Change Directory in den Ordner mit den Tcl-Skripten
+- cd C:/Users/Ralf/Documents/audiodsp/hw/scripts
+
+Testen mit print-working-directory, ob man isch im richtigen Ordner befindet
+- pwd
+
+Starten des Skriptes um das Projekt in Vivado aufzubauen
+- source create_project.tcl
+
+Um später den Ordner mit einem Commit auf GitHub pushen zu können, muss mit close_project die Konsole das Projekt verlassen
+- close_project
+
+Das create-project.tcl Skript muss mit dem fortschritt des Projektes um dessen Dateinen erweitert werden
+=> regelmäßig warten!!
 
 
 # FPGA Audio DSP
@@ -75,8 +95,8 @@ fpga-audiodsp/
 │
 ├── docs/                Dokumentation und Projektbericht
 │
-├── hw/
-│   ├── rtl/
+├── hw/                  Hardware
+│   ├── rtl/             Register Transfer Level
 │   │   ├── i2s/         I2S Sender / Empfänger
 │   │   ├── signal_gen/  Sinusgenerator
 │   │   ├── wav_player/  WAV Wiedergabe
@@ -85,7 +105,8 @@ fpga-audiodsp/
 │   │
 │   ├── constraints/     Board Constraints (XDC)
 │   ├── tb/              Testbenches
-│   └── scripts/         Vivado TCL Skripte
+│   ├── scripts/         Vivado TCL Skripte
+│   └── bitstreams/      working bitsream-files for quick loading
 │
 ├── sw/                  Software für das Processing System
 │
