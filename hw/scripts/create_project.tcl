@@ -10,6 +10,7 @@ create_project $proj_name $proj_dir -part xc7z007sclg400-1 -force
 
 add_files [file join $root_dir rtl i2s_transceiver.vhd]
 add_files [file join $root_dir rtl i2s_playback.vhd]
+add_files [file join $root_dir rtl button_onepulse.vhd]
 add_files [file join $root_dir constraints cons.xdc]
 
 set_property top i2s_playback [current_fileset]

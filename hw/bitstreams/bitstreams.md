@@ -7,6 +7,10 @@ Dieser Ordner enthält lauffähige Bitstreams für schnelle Zwischenstände zum 
   - Board: Digilent Cora Z7-07S
   - Funktion: I2S Sinusgenerator
   - Vivado: 2023.2
+- `i2s_sine_keyboard_cora_z7_v0_1.bit`
+  - Board: Digilent Cora Z7-07S
+  - Funktion: I2S Sinusgenerator mit Keyboardfunktion C-Dur-Tonleiter
+  - Vivado: 2021.2
 
 ## Laden auf das Board
 1. Vivado öffnen
