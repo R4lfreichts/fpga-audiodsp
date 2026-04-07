@@ -5,7 +5,7 @@ create_project $proj_name $proj_dir -part xc7z007sclg400-1 -force
 
 add_files ../rtl/i2s_transceiver.vhd
 add_files ../rtl/i2s_playback.vhd
-add_files ../constraints/cora_z7_i2s.xdc
+add_files ../constraints/cons.xdc
 
 set_property top i2s_playback [current_fileset]
 
