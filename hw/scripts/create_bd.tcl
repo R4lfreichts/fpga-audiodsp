@@ -642,6 +642,13 @@ proc create_root_design { parentCell } {
   assign_bd_address -offset 0x40400000 -range 0x00010000 -target_address_space [get_bd_addr_spaces processing_system7_0/Data] [get_bd_addr_segs axi_dma_0/S_AXI_LITE/Reg] -force
   assign_bd_address -offset 0x00000000 -range 0x20000000 -target_address_space [get_bd_addr_spaces axi_dma_0/Data_MM2S] [get_bd_addr_segs processing_system7_0/S_AXI_HP0/HP0_DDR_LOWOCM] -force
 
+  connect_bd_net -net rst_ps7_0_100M_peripheral_aresetn \
+    [get_bd_pins axis_data_fifo_0/s_axis_aresetn]
+
+  connect_bd_net -net i2s_audio_sink_0_audio_resetn_out \
+    [get_bd_pins i2s_audio_sink_0/audio_resetn_out] \
+    [get_bd_pins axis_data_fifo_0/m_axis_aresetn]
+
 
   # Restore current instance
   current_bd_instance $oldCurInst

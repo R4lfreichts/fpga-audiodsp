@@ -18,3 +18,15 @@ add_files [file join $root_dir constraints cons.xdc]
 source [file join $script_dir create_clk_wiz.tcl]
 
 update_compile_order -fileset sources_1
+
+source [file join $script_dir create_bd.tcl]
+
+generate_target all [get_files [file join $proj_dir $proj_name.srcs sources_1 bd audio_dma_bd audio_dma_bd.bd]]
+
+make_wrapper -files [get_files [file join $proj_dir $proj_name.srcs sources_1 bd audio_dma_bd audio_dma_bd.bd]] -top
+
+add_files -norecurse [file join $proj_dir $proj_name.gen sources_1 bd audio_dma_bd hdl audio_dma_bd_wrapper.v]
+
+set_property top audio_dma_bd_wrapper [current_fileset]
+
+update_compile_order -fileset sources_1

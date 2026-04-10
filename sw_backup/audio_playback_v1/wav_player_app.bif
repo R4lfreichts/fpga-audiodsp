@@ -1,0 +1,7 @@
+//arch = zynq; split = false; format = BIN
+the_ROM_image:
+{
+	[bootloader]C:\Users\Ralf\Documents\audiodsp\sw\audio_dma_platform\export\audio_dma_platform\sw\boot\fsbl.elf
+	C:\Users\Ralf\Documents\audiodsp\sw\wav_player_app\_ide\bitstream\audio_dma_bd_wrapper.bit
+	C:\Users\Ralf\Documents\audiodsp\sw\wav_player_app\build\wav_player_app.elf
+}
