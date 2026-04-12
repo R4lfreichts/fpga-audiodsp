@@ -1,0 +1,7 @@
+//arch = zynq; split = false; format = BIN
+the_ROM_image:
+{
+	[bootloader]C:\Users\Ralf\Documents\FPGA\Cora_Platform\audio_platform\export\audio_platform\sw\boot\fsbl.elf
+	C:\Users\Ralf\Documents\FPGA\Cora_Platform\audio_app\_ide\bitstream\playback_with_buttons.bit
+	C:\Users\Ralf\Documents\FPGA\Cora_Platform\audio_app\build\audio_app.elf
+}

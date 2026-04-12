@@ -16,7 +16,11 @@ set_property -dict { PACKAGE_PIN U19 IOSTANDARD LVCMOS33 } [get_ports {ws_0[0]}]
 set_property -dict { PACKAGE_PIN W18 IOSTANDARD LVCMOS33 } [get_ports {sclk_0[0]}]
 
 ## Nur wenn der Port wirklich so heißt:
-set_property -dict { PACKAGE_PIN W19 IOSTANDARD LVCMOS33 } [get_ports {sd_rx}]
+set_property -dict { PACKAGE_PIN W19 IOSTANDARD LVCMOS33 } [get_ports {sd_rx_0}]
 
 ## underrun extern auf freien Pin
 set_property -dict { PACKAGE_PIN Y14 IOSTANDARD LVCMOS33 } [get_ports {underrun_0}]
+
+## Knöpfe
+set_property -dict { PACKAGE_PIN D20 IOSTANDARD LVCMOS33 } [get_ports {buttons_0[0]}]
+set_property -dict { PACKAGE_PIN D19 IOSTANDARD LVCMOS33 } [get_ports {buttons_0[1]}]
