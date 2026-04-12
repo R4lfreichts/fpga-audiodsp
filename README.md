@@ -2,17 +2,18 @@
 
 - git status
 - (git add .)
-- git add hw/rtl/i2s_playback.vhd
-- git add hw/rtl/i2s_transceiver.vhd
-- git add hw/constraints/cons.xdc
-- git add hw/scripts/create_project.tcl
-- git add hw/scripts/create_clk_wiz.tcl
-- git add .gitignore
-- git add README.
-- falls zu viel geadded (zum Beispiel mit . oder *): git restore --staged .
+- git add folder
+
+Falls zu viel geadded (zum Beispiel mit . oder *): 
+- git restore --staged .
+
 - git commit -m "Kurz und konkret beschreiben, was du geändert hast"
 - git push
+
 => der Vorgang des pushens geht wesentlich leichter, wenn man den bitstream / die Daten an einem abgesonderten Ort abspeichert und dann die erzeugten Ordner im scripts-Verzeichnis löscht 
+
+- git tag v0.x-Beschreibung des Tags
+- git push origin v0.x-Beschreibung des Tags
 
 # Vivado-Projekt starten
 Um das Vivado-Projekt aus dem GitHub-Repository zu erzeugen, müssen mit Hilfe 
@@ -20,8 +21,9 @@ der Vivado-Tcl-Konsole folgende Schritte ausgeführt werden:
 
 Change Directory in den Ordner mit den Tcl-Skripten
 - cd C:/Users/Ralf/Documents/audiodsp/hw/scripts
+=> Dann noch den Ordner des Abschnitts hinzufügen: scripts/sine_generator
 
-Testen mit print-working-directory, ob man isch im richtigen Ordner befindet
+Testen mit print-working-directory, ob man sich im richtigen Ordner befindet
 - pwd
 
 Starten des Skriptes um das Projekt in Vivado aufzubauen
@@ -91,24 +93,34 @@ Die Entwicklung erfolgt schrittweise:
 ## Projektstruktur
 
 ```
-fpga-audiodsp/
+audiodsp/
+
 │
-├── docs/                Dokumentation und Projektbericht
+├── audio/				 	Audio-Dateien (.wav .o)
 │
-├── hw/                  Hardware
-│   ├── rtl/             Register Transfer Level
-│   │   ├── i2s/         I2S Sender / Empfänger
-│   │   ├── signal_gen/  Sinusgenerator
-│   │   ├── wav_player/  WAV Wiedergabe
-│   │   ├── bypass/      ADC → DAC Bypass
-│   │   └── effects/     DSP Effekte
+├── docs/                	Dokumentation und Projektbericht
+│
+├── hw/                  	Hardware
+│   │
+│   ├── rtl/             	Register Transfer Level
+│   │   ├── sine_generator/ Sinusgenerator
+│   │   ├── sinus_keyboard/ Sinus-Keyboard
+│   │   ├── wav_player/  	WAV Wiedergabe
+│   │   ├── bypass/      	ADC → DAC Bypass
+│   │   └── effects/     	DSP Effekte
+│   │
+│   ├── scripts/            Vivado TCL Skripte
+│   │   ├── sinus_gen/   	Alle .bit(sream-files) der verschiedenen Funktionen 
+│   │   ├── sinus_keyboard/ Hier liegen alle constraint-files
+│   │   ├── wav_player/  	WAV Wiedergabe
+│   │   ├── bypass/      	ADC → DAC Bypass
+│   │   └── effects/     	DSP Effekte
 │   │
 │   ├── constraints/     Board Constraints (XDC)
 │   ├── tb/              Testbenches
-│   ├── scripts/         Vivado TCL Skripte
 │   └── bitstreams/      working bitsream-files for quick loading
 │
-├── sw/                  Software für das Processing System
+├── sw_backup/           Software für das Processing System
 │
 ├── audio/               Test-Audiodateien
 │
@@ -120,9 +132,9 @@ fpga-audiodsp/
 # Entwicklungsumgebung
 
 - **Vivado**
+- VHDL, TCL
 - **Vitis**
-- VHDL
-
+- C
 ---
 
 # Status
@@ -132,8 +144,23 @@ Aktueller Entwicklungsstand:
 - I²S-Sender implementiert
 - Sinus-Testsignal erzeugt
 - DAC-Ausgabe über Pmod I2S2 erfolgreich getestet
+- WAV Playback implementiert und getestet
+- WAV playback mit buttons erweitert
 
 ---
+
+# Nächste Ziele
+
+aktuell:
+
+- Bypass implementieren
+- Documentation weitermachen
+
+zukünftig:
+
+- WAV Vergleich mit 48kHz / 96kHz usw.
+- Effekte implementieren
+- auf Zybo z7-20 umsteigen / oder pynq z2
 
 # Autor
 
