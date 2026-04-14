@@ -5,6 +5,7 @@
 - git add folder
 
 Falls zu viel geadded (zum Beispiel mit . oder *): 
+- git reset
 - git restore --staged .
 
 - git commit -m "Kurz und konkret beschreiben, was du geändert hast"
@@ -21,6 +22,7 @@ der Vivado-Tcl-Konsole folgende Schritte ausgeführt werden:
 
 Change Directory in den Ordner mit den Tcl-Skripten
 - cd C:/Users/Ralf/Documents/audiodsp/hw/scripts
+
 => Dann noch den Ordner des Abschnitts hinzufügen: scripts/sine_generator
 
 Testen mit print-working-directory, ob man sich im richtigen Ordner befindet
@@ -34,6 +36,14 @@ Um später den Ordner mit einem Commit auf GitHub pushen zu können, muss mit cl
 
 Das create-project.tcl Skript muss mit dem fortschritt des Projektes um dessen Dateinen erweitert werden
 => regelmäßig warten!!
+
+# Vitis-Projekt starten
+Um das Vitis-Projekt aus dem GitHub-Repository zu erzeugen, muss zunächst eine Platform und eine Applikation in Vitis erstellt werden.
+Für einen unkomplizierten Workflow bietet sich an, eine allgemeine Audio-Platform und Applikation in einem externen Ordner anzulegen, somit lassen sich Versionsprobleme vermeiden.
+Für die Platform selber wird die .xsa Datei benötigt, um für das Projekt den richtigen Prozessor zu verwenden. Diese enthält außerdem den Bitstream, falls nochmal etwas im Hardware Teil geändert werden muss, 
+muss erneut die .xsa aus Vivado exportiert werden, kann aber in die bestehende Platform / Applikation integriert werden. Zudem befinden sich im Git-Repository jeweils die main.c, CMakeLists.txt und lscript.ld, 
+die in den Source Ordner abgelegt werden müssen. Derzeit experimentiere ich noch, wie sich die Anwendung mittels BOOT.bin, audio_app.bif und fsbl.elf auf dem SoC starten lässt. Unter anderem auch nur mit der Nutzung von VS-Code.
+
 
 
 # FPGA Audio DSP
@@ -103,15 +113,15 @@ audiodsp/
 ├── hw/                  	Hardware
 │   │
 │   ├── rtl/             	Register Transfer Level
-│   │   ├── sine_generator/ Sinusgenerator
+│   │   ├── sine_generator/ Sinus Testsound
 │   │   ├── sinus_keyboard/ Sinus-Keyboard
 │   │   ├── wav_player/  	WAV Wiedergabe
 │   │   ├── bypass/      	ADC → DAC Bypass
 │   │   └── effects/     	DSP Effekte
 │   │
 │   ├── scripts/            Vivado TCL Skripte
-│   │   ├── sinus_gen/   	Alle .bit(sream-files) der verschiedenen Funktionen 
-│   │   ├── sinus_keyboard/ Hier liegen alle constraint-files
+│   │   ├── sinus_gen/   	Sinus Testsound
+│   │   ├── sinus_keyboard/ Sinus-Keyboard
 │   │   ├── wav_player/  	WAV Wiedergabe
 │   │   ├── bypass/      	ADC → DAC Bypass
 │   │   └── effects/     	DSP Effekte
@@ -120,11 +130,9 @@ audiodsp/
 │   ├── tb/              Testbenches
 │   └── bitstreams/      working bitsream-files for quick loading
 │
-├── sw_backup/           Software für das Processing System
-│
-├── audio/               Test-Audiodateien
-│
-└── measurements/        Messergebnisse und Tests
+└── sw/		             Software für das Processing System
+    ├── audio_playback_buttons_v1  Sw für wav_playback mit Buttons
+    └── audio_playback_v1 		   Sw für wav_playback
 ```
 
 ---
