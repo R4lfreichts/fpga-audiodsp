@@ -1,0 +1,82 @@
+library ieee;
+use ieee.std_logic_1164.all;
+use ieee.numeric_std.all;
+
+entity fx_clipping is
+    generic (
+        d_width    : integer := 24;
+        clip_shift : integer := 1
+    );
+    port (
+        clk         : in  std_logic;
+        reset_n     : in  std_logic;
+        sample_tick : in  std_logic;
+        l_in        : in  std_logic_vector(d_width-1 downto 0);
+        r_in        : in  std_logic_vector(d_width-1 downto 0);
+        l_out       : out std_logic_vector(d_width-1 downto 0);
+        r_out       : out std_logic_vector(d_width-1 downto 0)
+    );
+end entity fx_clipping;
+
+architecture rtl of fx_clipping is
+
+    function clip_sample(
+        x         : signed;
+        shift_val : integer;
+        out_width : positive
+    ) return signed is
+        variable y          : signed(out_width-1 downto 0);
+        variable x_resized  : signed(out_width-1 downto 0);
+        variable threshold  : signed(out_width-1 downto 0);
+        variable shift_eff  : integer;
+    begin
+        x_resized := resize(x, out_width);
+
+        if shift_val < 0 then
+            shift_eff := 0;
+        elsif shift_val > out_width - 2 then
+            shift_eff := out_width - 2;
+        else
+            shift_eff := shift_val;
+        end if;
+
+        threshold := to_signed((2**(out_width - 1 - shift_eff)) - 1, out_width);
+
+        if x_resized > threshold then
+            y := threshold;
+        elsif x_resized < -threshold then
+            y := -threshold;
+        else
+            y := x_resized;
+        end if;
+
+        return y;
+    end function;
+
+    signal l_reg : std_logic_vector(d_width-1 downto 0) := (others => '0');
+    signal r_reg : std_logic_vector(d_width-1 downto 0) := (others => '0');
+
+begin
+
+    process(clk)
+        variable l_tmp : signed(d_width-1 downto 0);
+        variable r_tmp : signed(d_width-1 downto 0);
+    begin
+        if rising_edge(clk) then
+            if reset_n = '0' then
+                l_reg <= (others => '0');
+                r_reg <= (others => '0');
+            elsif sample_tick = '1' then
+                l_tmp := clip_sample(signed(l_in), clip_shift, d_width);
+                r_tmp := clip_sample(signed(r_in), clip_shift, d_width);
+
+                l_reg <= std_logic_vector(l_tmp);
+                r_reg <= std_logic_vector(r_tmp);
+            end if;
+        end if;
+    end process;
+
+    l_out <= l_reg;
+    r_out <= r_reg;
+
+end architecture rtl;

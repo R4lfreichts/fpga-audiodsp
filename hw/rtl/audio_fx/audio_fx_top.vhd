@@ -43,6 +43,10 @@ architecture rtl of audio_fx_top is
     signal l_sample_fx0  : std_logic_vector(d_width-1 downto 0) := (others => '0');
     signal r_sample_fx0  : std_logic_vector(d_width-1 downto 0) := (others => '0');
 
+	-- Sample stream after clipping stage
+	signal l_sample_fx1 : std_logic_vector(d_width-1 downto 0) := (others => '0');
+	signal r_sample_fx1 : std_logic_vector(d_width-1 downto 0) := (others => '0');
+
     -- Sample stream to I2S transmitter
     signal l_sample_tx   : std_logic_vector(d_width-1 downto 0) := (others => '0');
     signal r_sample_tx   : std_logic_vector(d_width-1 downto 0) := (others => '0');
@@ -163,8 +167,31 @@ begin
             r_out       => r_sample_fx0
         );
 
-    l_sample_tx <= l_sample_fx0;
-    r_sample_tx <= r_sample_fx0;
+    -- l_sample_tx <= l_sample_fx0;
+    -- r_sample_tx <= r_sample_fx0;
+	
+	---------------------------------------------------------------------------
+    -- Effect chain: RX -> fx_gain -> TX
+    ---------------------------------------------------------------------------
+	fx_clipping_0 : entity work.fx_clipping
+		generic map (
+			d_width    => d_width,
+			clip_shift => 1
+		)
+		port map (
+			clk         => master_clk,
+			reset_n     => pll_locked,
+			sample_tick => sample_tick,
+			l_in        => l_sample_fx0,
+			r_in        => r_sample_fx0,
+			l_out       => l_sample_fx1,
+			r_out       => r_sample_fx1
+		);
+
+	l_sample_tx <= l_sample_fx1;
+	r_sample_tx <= r_sample_fx1;
+	
+	
 
     ---------------------------------------------------------------------------
     -- Same audio clocks to both Pmod I2S2 rows

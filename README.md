@@ -140,9 +140,9 @@ audiodsp/
 # Entwicklungsumgebung
 
 - **Vivado**
-- VHDL, TCL
+=> VHDL, TCL
 - **Vitis**
-- C
+=> C
 ---
 
 # Status
