@@ -105,7 +105,6 @@ Die Entwicklung erfolgt schrittweise:
 
 ```
 audiodsp/
-
 │
 ├── audio/				 	Audio-Dateien (.wav .o)
 │
