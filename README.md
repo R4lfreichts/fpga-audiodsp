@@ -1,5 +1,5 @@
 # Wichtig für GitHub:
-
+Workflow für die Versionierung der Entwicklungen:
 - git status
 - (git add .)
 - git add folder
@@ -11,7 +11,7 @@ Falls zu viel geadded (zum Beispiel mit . oder *):
 - git commit -m "Kurz und konkret beschreiben, was du geändert hast"
 - git push
 
-=> der Vorgang des pushens geht wesentlich leichter, wenn man den bitstream / die Daten an einem abgesonderten Ort abspeichert und dann die erzeugten Ordner im scripts-Verzeichnis löscht 
+=> der Vorgang des pushens geht wesentlich leichter, wenn man den bitstream / die Daten an einem abgesonderten Ort abspeichert und dann die durch Vivado erzeugten Ordner im scripts-Verzeichnis löscht 
 
 - git tag v0.x-Beschreibung des Tags
 - git push origin v0.x-Beschreibung des Tags
@@ -34,15 +34,16 @@ Starten des Skriptes um das Projekt in Vivado aufzubauen
 Um später den Ordner mit einem Commit auf GitHub pushen zu können, muss mit close_project die Konsole das Projekt verlassen
 - close_project
 
-Das create-project.tcl Skript muss mit dem fortschritt des Projektes um dessen Dateinen erweitert werden
+Das create-project.tcl Skript muss mit dem fortschritt des Projektes um dessen Dateien erweitert werden
 => regelmäßig warten!!
 
 # Vitis-Projekt starten
+
 Um das Vitis-Projekt aus dem GitHub-Repository zu erzeugen, muss zunächst eine Platform und eine Applikation in Vitis erstellt werden.
 Für einen unkomplizierten Workflow bietet sich an, eine allgemeine Audio-Platform und Applikation in einem externen Ordner anzulegen, somit lassen sich Versionsprobleme vermeiden.
 Für die Platform selber wird die .xsa Datei benötigt, um für das Projekt den richtigen Prozessor zu verwenden. Diese enthält außerdem den Bitstream, falls nochmal etwas im Hardware Teil geändert werden muss, 
 muss erneut die .xsa aus Vivado exportiert werden, kann aber in die bestehende Platform / Applikation integriert werden. Zudem befinden sich im Git-Repository jeweils die main.c, CMakeLists.txt und lscript.ld, 
-die in den Source Ordner abgelegt werden müssen. Derzeit experimentiere ich noch, wie sich die Anwendung mittels BOOT.bin, audio_app.bif und fsbl.elf auf dem SoC starten lässt. Unter anderem auch nur mit der Nutzung von VS-Code.
+die in den Source Ordner abgelegt werden müssen. Derzeit experimentiere ich noch, wie sich die Anwendung mittels BOOT.bin, audio_app.bif und fsbl.elf auf dem SoC starten lässt. Unter anderem auch nur mit der Nutzung von Vivado.
 
 
 
@@ -154,21 +155,22 @@ Aktueller Entwicklungsstand:
 - DAC-Ausgabe über Pmod I2S2 erfolgreich getestet
 - WAV Playback implementiert und getestet
 - WAV playback mit buttons erweitert
+- Bypass implementiert und getestet
+- Effekte hinzugefügt: Gain, Clipping
 
 ---
 
 # Nächste Ziele
 
 aktuell:
-
-- Bypass implementieren
-- Documentation weitermachen
+- Dokumentation weitermachen
+- weitere Effekte hinzufügen
 
 zukünftig:
 
 - WAV Vergleich mit 48kHz / 96kHz usw.
-- Effekte implementieren
-- auf Zybo z7-20 umsteigen / oder pynq z2
+- weitere Effekte implementieren
+- auf Zybo z7-20 umsteigen
 
 # Autor
 
