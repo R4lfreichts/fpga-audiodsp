@@ -5,11 +5,10 @@ create_project $proj_name $proj_dir -part xc7z007sclg400-1 -force
 
 add_files ../../rtl/sine_generator/i2s_transceiver.vhd
 add_files ../../rtl/sine_generator/i2s_playback.vhd
-add_files ../../constraints/cons_sine.xdc
-
+add_files [file join $root_dir constraints cons_sine.xdc]
 set_property top i2s_playback [current_fileset]
 
-source ./create_clk_wiz.tcl
+source [file join $script_dir create_clk_wiz.tcl]
 
 update_compile_order -fileset sources_1
 save_project_as $proj_name $proj_dir -force

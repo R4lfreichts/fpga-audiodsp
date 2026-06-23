@@ -171,9 +171,9 @@ begin
     -- r_sample_tx <= r_sample_fx0;
 	
 	---------------------------------------------------------------------------
-    -- Effect chain: RX -> fx_gain -> TX
+    -- Effect chain: RX -> fx_gain -> fx_clipping -> TX
     ---------------------------------------------------------------------------
-	fx_clipping_0 : entity work.fx_clipping
+	fx_soft_clipping_0 : entity work.fx_soft_clipping
 		generic map (
 			d_width    => d_width,
 			clip_shift => 1

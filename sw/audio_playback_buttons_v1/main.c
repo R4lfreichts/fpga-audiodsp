@@ -111,7 +111,7 @@ static int init_dma(void)
     }
 
     if (XAxiDma_HasSg(&AxiDma)) {
-        printf("DMA is in SG mode, but simple mode is expected\r\n");
+        printf("DMA is in SG mode, but simple mode is expected\r\n"); #SG = scather&gather
         return XST_FAILURE;
     }
 

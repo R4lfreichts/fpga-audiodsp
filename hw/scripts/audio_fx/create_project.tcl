@@ -16,6 +16,7 @@ add_files [file join $root_dir rtl $section_name i2s_transceiver.vhd]
 add_files [file join $root_dir rtl $section_name button_onepulse.vhd]
 add_files [file join $root_dir rtl $section_name fx_clipping.vhd]
 add_files [file join $root_dir rtl $section_name fx_softclipping.vhd]
+add_files [file join $root_dir rtl $section_name fx_delay.vhd]
 add_files [file join $root_dir constraints cons_audio_fx.xdc]
 
 source [file join $script_dir create_clk_wiz.tcl]

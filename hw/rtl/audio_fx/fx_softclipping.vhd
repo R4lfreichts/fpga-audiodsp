@@ -5,7 +5,7 @@ use ieee.numeric_std.all;
 entity fx_soft_clipping is
     generic (
         d_width    : integer := 24;
-        clip_shift : integer := 1
+        clip_shift : integer := 2
     );
     port (
         clk         : in  std_logic;
