@@ -176,7 +176,7 @@ begin
 	fx_soft_clipping_0 : entity work.fx_soft_clipping
 		generic map (
 			d_width    => d_width,
-			clip_shift => 1
+			clip_shift => 2
 		)
 		port map (
 			clk         => master_clk,
